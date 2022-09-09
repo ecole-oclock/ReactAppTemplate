@@ -1,0 +1,1 @@
+export { default as identitySelector } from './selectors/identity';

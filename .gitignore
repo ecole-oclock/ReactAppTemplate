@@ -1,0 +1,13 @@
+# Javascript compiled
+/build
+
+# Dependencies NPM / Yarn
+node_modules
+
+# Externals scripts
+/vendor
+
+.env.*
+!.env.local.example
+
+

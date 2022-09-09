@@ -1,0 +1,11 @@
+@use 'styles/vars';
+
+.mainContainer {
+  padding: 20px;
+
+  h1 {
+    text-align: center;
+    font-size: 5rem;
+    color: vars.$secondar-color;
+  }
+}
