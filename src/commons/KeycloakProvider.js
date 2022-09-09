@@ -51,10 +51,6 @@ function KeycloakProvider({ children, showError }) {
   const setIdentity = useSetRecoilState(identitySelector);
 
   const logoutUser = useCallback(() => {
-    console.log(
-      'Vous avez été déconnecté de keycloak, vous allez être redirigé dans 2 secondes',
-    );
-
     showError(
       'Vous avez été déconnecté de keycloak, vous allez être redirigé dans 2 secondes',
     );
@@ -101,6 +97,7 @@ function KeycloakProvider({ children, showError }) {
       }
       case 'onInitError': {
         showError("Une erreur est survenue à l'initialisation de Keycloak");
+        break;
       }
       default:
         break;
