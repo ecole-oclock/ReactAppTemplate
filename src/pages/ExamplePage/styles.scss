@@ -1,0 +1,22 @@
+@use 'src/styles/vars';
+
+.home-container {
+  width: 800px;
+  margin: 9em auto;
+
+  .home-title {
+    text-align: center;
+    font-size: 5rem;
+    color: vars.$secondar-color;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 3rem;
+    color: vars.$secondar-color;
+  }
+
+  .home-nav {
+    padding-bottom: 2em;
+  }
+}

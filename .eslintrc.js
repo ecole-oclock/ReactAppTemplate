@@ -46,6 +46,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/no-array-index-key': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     'import/resolver': {

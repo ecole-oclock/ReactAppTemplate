@@ -1,10 +1,7 @@
-import React from 'react';
-import './style.scss';
+import { useRoutes } from 'react-router-dom';
+import routes from 'src/routes';
 
 export default function App() {
-  return (
-    <div className="mainContainer">
-      <h1>Hello World</h1>
-    </div>
-  );
+  const router = useRoutes(routes);
+  return router;
 }
