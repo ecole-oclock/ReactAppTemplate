@@ -1,6 +1,6 @@
 {
   "name": "react-app-template",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Template d'application React",
   "main": "src/index.js",
   "repository": "https://github.com/O-clock-Dev/ReactAppTemplate.git",
