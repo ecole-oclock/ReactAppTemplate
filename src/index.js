@@ -8,6 +8,7 @@ import { ConfigProvider } from '@o-clock-dev/mooncake';
 import localeFR from 'src/utils/localeFR';
 import { HelmetProvider } from 'react-helmet-async';
 import '@o-clock-dev/mooncake/dist/style.css';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { QueryClientProvider } from '@tanstack/react-query';
 
 import App from 'src/components/App';
@@ -46,6 +47,7 @@ const Application = (
               <MessagesProvider>
                 <KeycloakProvider keycloakInstance={getKeycloakInstance()}>
                   <App />
+                  <ReactQueryDevtools initialIsOpen={false} />
                 </KeycloakProvider>
               </MessagesProvider>
             </ConfigProvider>
@@ -55,6 +57,5 @@ const Application = (
     </HelmetProvider>
   </QueryClientProvider>
 );
-
 
 root.render(Application);
