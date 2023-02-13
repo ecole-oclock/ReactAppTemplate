@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/O-clock-Dev/ReactAppTemplate/compare/v1.2.0...v1.3.0) (2023-02-13)
+
+
+### Features
+
+* **ReactQuery:** ajout de l'outil de dev de react query ([32e23f5](https://github.com/O-clock-Dev/ReactAppTemplate/commit/32e23f5e352112865a9d4de676144d5a2bfd9291))
+
 ## [1.2.0](https://github.com/O-clock-Dev/ReactAppTemplate/compare/v1.1.0...v1.2.0) (2023-02-13)
 
 
