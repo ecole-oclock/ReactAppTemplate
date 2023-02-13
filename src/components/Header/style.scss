@@ -1,0 +1,38 @@
+.ant-layout-header {
+  background-color: #fff;
+  box-shadow: inset 0 -1px 0 #f0f0f0;
+  padding: 8px 28px 0 16px;
+}
+
+.ant-page-header {
+  padding: 0;
+}
+
+.header-title {
+  color: #234b78;
+  cursor: pointer;
+}
+
+.header-title-top {
+  display: block;
+  font-family: 'Brandon Grotesque', Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 23px;
+}
+
+.header-title-sub {
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.ant-avatar.ant-avatar-image {
+  width: 45px;
+  height: 45px;
+}
+
+.ant-space-item > .ant-dropdown-trigger {
+  padding: 0;
+}

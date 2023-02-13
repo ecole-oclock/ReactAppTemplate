@@ -2,6 +2,7 @@ module.exports = {
   extends: 'airbnb',
   parser: '@babel/eslint-parser',
   plugins: ['jest'],
+  root: true,
   rules: {
     /* Code style */
     'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
@@ -21,7 +22,10 @@ module.exports = {
         ignoreRegExpLiterals: true,
       },
     ],
-    'no-console': 'warn',
+    'no-console': [
+      'warn',
+      { allow: ['error', 'warn'] },
+    ],
     'no-debugger': 'warn',
     'no-irregular-whitespace': ['error', { skipTemplates: true }],
     'no-mixed-operators': 'off',
@@ -49,13 +53,13 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
   },
   settings: {
+    'import/extensions': [
+      '.js',
+      '.jsx',
+    ],
     'import/resolver': {
-      node: {
-        paths: ['app/', 'src/'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
       webpack: {
-        config: 'webpack/webpack.config.js',
+        config: './webpack/webpack.common.js',
       },
     },
   },

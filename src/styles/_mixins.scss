@@ -1,0 +1,77 @@
+@import 'breakpoints';
+
+/**
+ * Min Width
+ */
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+// Custom devices
+@mixin rwd($screen) {
+  @media (min-width: $screen) {
+    @content;
+  }
+}
+
+/**
+ * Max Width
+ */
+// Small devices
+@mixin max-sm {
+  @media (max-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin max-md {
+  @media (max-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin max-lg {
+  @media (max-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin max-xl {
+  @media (max-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+// Custom devices
+@mixin max-rwd($screen) {
+  @media (max-width: $screen) {
+    @content;
+  }
+}

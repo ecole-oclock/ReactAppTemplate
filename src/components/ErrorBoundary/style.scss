@@ -1,0 +1,13 @@
+.page-error-500 {
+  .right-panel {
+    background-image: url('@assets/images/error_500.svg');
+    background-color: #f0f0f0;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center center;
+  }
+
+  .left-panel {
+    background-color: white;
+  }
+}

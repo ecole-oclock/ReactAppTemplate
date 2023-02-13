@@ -24,6 +24,9 @@ module.exports = {
       src: paths.src,
       styles: path.resolve(paths.src, 'styles'),
       '@recoil': path.resolve(paths.src, 'recoil'),
+      '@assets': path.resolve(paths.assets),
+      __tests__: path.resolve(paths.root, '__tests__'),
+      __mocks__: path.resolve(paths.root, '__mocks__'),
     },
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
@@ -52,10 +55,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: `${paths.assets}/favicon.ico`,
+      favicon: `${paths.assets}/favicons/favicon-32x32-default.png`,
       template: `${paths.assets}/index.html`,
       filename: './index.html',
       keycloakBaseURL: dotenv.parsed.KEYCLOAK_URL,
+      publicPath: 'auto',
     }),
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.parsed),

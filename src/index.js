@@ -1,13 +1,22 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { createRoot } from 'react-dom/client';
+import { ConfigProvider } from '@o-clock-dev/mooncake';
+import localeFR from 'src/utils/localeFR';
+import { HelmetProvider } from 'react-helmet-async';
+import '@o-clock-dev/mooncake/dist/style.css';
+import { QueryClientProvider } from '@tanstack/react-query';
 
 import App from 'src/components/App';
 import KeycloakProvider from 'src/commons/KeycloakProvider';
 import MessagesProvider from 'src/commons/MessagesProvider';
+
+import ErrorBoundary from 'src/components/ErrorBoundary';
+import getKeycloakInstance from 'src/commons/Keycloak';
+import queryClient from 'src/queryClient';
 
 import packageJSON from '../package.json';
 
@@ -28,19 +37,24 @@ const container = document.querySelector('#root');
 const root = createRoot(container);
 
 const Application = (
-  <RecoilRoot>
-    <BrowserRouter basename="/">
-      <MessagesProvider>
-        <KeycloakProvider>
-          <React.StrictMode>
-            <Suspense fallback={<h1>Chargement de la page</h1>}>
-              <App />
-            </Suspense>
-          </React.StrictMode>
-        </KeycloakProvider>
-      </MessagesProvider>
-    </BrowserRouter>
-  </RecoilRoot>
+  <QueryClientProvider client={queryClient}>
+    <HelmetProvider>
+      <BrowserRouter>
+        <ErrorBoundary>
+          <RecoilRoot>
+            <ConfigProvider locale={localeFR}>
+              <MessagesProvider>
+                <KeycloakProvider keycloakInstance={getKeycloakInstance()}>
+                  <App />
+                </KeycloakProvider>
+              </MessagesProvider>
+            </ConfigProvider>
+          </RecoilRoot>
+        </ErrorBoundary>
+      </BrowserRouter>
+    </HelmetProvider>
+  </QueryClientProvider>
 );
+
 
 root.render(Application);

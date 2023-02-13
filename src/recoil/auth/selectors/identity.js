@@ -1,16 +1,28 @@
 import { selector } from 'recoil';
-import keycloak from 'src/commons/Keycloak';
+import jwtDecode from 'jwt-decode';
+import identityAtom from '@recoil/auth/atom/identity';
+import ApiCaller from 'src/commons/ApiCaller';
 
 export default selector({
   key: 'identitySelector',
-  get: () => JSON.parse(localStorage.getItem('identity')) || {},
-  set: (methods, profile) => {
-    if (profile === null) {
+  get: ({ get }) => {
+    try {
+      const jwToken = get(identityAtom);
+      return jwtDecode(jwToken);
+    }
+    catch (error) {
+      return {};
+    }
+  },
+  set: ({ set }, jwToken) => {
+    if (jwToken === null) {
       localStorage.removeItem('identity');
-      keycloak.logout();
+      ApiCaller.setToken(null);
     }
     else {
-      localStorage.setItem('identity', JSON.stringify(profile || {}));
+      ApiCaller.setToken(jwToken);
+      localStorage.setItem('identity', JSON.stringify(jwToken || {}));
     }
+    set(identityAtom, jwToken || {});
   },
 });

@@ -8,7 +8,7 @@ import EventEmitter from 'events';
 const { API_BASEURL } = process.env;
 
 export default class ApiCaller {
-  static baseURL = `${API_BASEURL}/api`;
+  static axiosInstance = null;
 
   static token = null;
 
@@ -16,6 +16,17 @@ export default class ApiCaller {
 
   static setToken(token) {
     this.token = token;
+  }
+
+  static getAxiosInstance() {
+    if (this.axiosInstance) {
+      return this.axiosInstance;
+    }
+    this.axiosInstance = axios.create({
+      baseURL: API_BASEURL,
+      timeout: 1000,
+    });
+    return this.axiosInstance;
   }
 
   static makeRequest(method, endpoint, data = {}, headersParam = {}, timeout = 10_000) {
@@ -26,7 +37,6 @@ export default class ApiCaller {
     };
     if (data instanceof FormData) {
       headers = {
-        'Content-Length': data.getLengthSync(), // Sinon ça marche pas !
         ...headers,
         ...data.getHeaders(),
       };
@@ -34,8 +44,7 @@ export default class ApiCaller {
     const urlConfig = {
       headers,
       method,
-      url: ApiCaller.baseURL + endpoint,
-      withCredentials: true,
+      url: endpoint,
       timeout,
     };
 
@@ -45,7 +54,7 @@ export default class ApiCaller {
     else {
       urlConfig.data = data;
     }
-    return axios(urlConfig)
+    return this.getAxiosInstance().request(urlConfig)
       .catch((error) => {
         const error_ = !error ? new Error('La session n\'est plus valide, vous devez vous reconnecter') : error;
         throw error_;

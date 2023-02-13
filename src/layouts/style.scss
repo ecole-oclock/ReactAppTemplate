@@ -1,0 +1,50 @@
+.main-layout {
+  .header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+  }
+
+  .content-layout {
+    max-height: 100vh;
+    height: calc(100vh - 64px);
+
+    .site-layout {
+      display: block;
+      overflow: auto;
+      flex: 1;
+    }
+
+    .ant-layout-content {
+      height: 100%;
+      overflow: auto;
+    }
+  }
+}
+
+.ant-layout {
+  &-has-sider {
+    .ant-layout-sider-children {
+      display: flex;
+
+      .ant-menu.ant-menu-inline-collapsed {
+        width: 100%;
+      }
+
+      .ant-menu {
+        flex: 1;
+      }
+    }
+  }
+
+  &-sider-trigger {
+    display: none;
+  }
+}
+
+.sider {
+  .ant-menu-item {
+    margin-top: 0;
+  }
+}

@@ -1,12 +1,2 @@
 @use 'reset';
 @use 'vars';
-
-@font-face {
-  font-family: Lato;
-  src: url('../assets/fonts/Lato-Regular.ttf');
-}
-
-body {
-  font-family: Lato, sans-serif;
-  background-color: vars.$primary-color;
-}
