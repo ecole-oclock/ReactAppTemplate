@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/O-clock-Dev/ReactAppTemplate/compare/v1.1.0...v1.2.0) (2023-02-13)
+
+
+### Features
+
+* **Upgrade:** grosse mise à jour de tout plein de choses ([44f8ae7](https://github.com/O-clock-Dev/ReactAppTemplate/commit/44f8ae7478ca0973eedd8ad1df860402f505a151))
+
 ## [1.1.0](https://github.com/O-clock-Dev/ReactAppTemplate/compare/v1.0.0...v1.1.0) (2022-11-29)
 
 
