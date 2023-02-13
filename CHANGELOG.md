@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/O-clock-Dev/ReactAppTemplate/compare/v1.3.0...v1.4.0) (2023-02-13)
+
+
+### Features
+
+* **Dependencies:** mise à jour des dépendances ([0b501e0](https://github.com/O-clock-Dev/ReactAppTemplate/commit/0b501e08dad6a0ece35a5c86857e4c899003906c))
+
 ## [1.3.0](https://github.com/O-clock-Dev/ReactAppTemplate/compare/v1.2.0...v1.3.0) (2023-02-13)
 
 
