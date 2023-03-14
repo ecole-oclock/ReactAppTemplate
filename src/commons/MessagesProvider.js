@@ -1,6 +1,6 @@
 import React, { PureComponent, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { notification } from '@o-clock-dev/mooncake';
+import { ToastContainer, toast } from '@o-clock-dev/mooncake';
 
 export const MessagesContext = React.createContext();
 
@@ -29,7 +29,8 @@ export const withMessages = (WrappedComponent) => {
 
 class MessagesProvider extends PureComponent {
   commonConfig = {
-    placement: 'bottomLeft',
+    position: 'bottom-left',
+    closeButton: false,
   };
 
   constructor(props) {
@@ -42,54 +43,79 @@ class MessagesProvider extends PureComponent {
     };
   }
 
-  showInfo = (message, title = null, duration = 4.5, dataTestId = 'notification_info') => notification.info({
+  getToastElement = ({
+    toastProps: { message, title = null, dataTestId = 'toast-element' },
+  }) => (
+    <div className="notification-content" data-testid={dataTestId}>
+      {title && <div className="notification-title">{title}</div>}
+      <div className="notification-body">{message}</div>
+    </div>
+  );
+
+  showInfo = (
+    message,
+    title = null,
+    duration = 10000,
+    dataTestId = 'notification_info',
+  ) => toast.info(this.getToastElement, {
     ...this.commonConfig,
-    message: title || 'Information',
-    description: message,
-    duration,
-    props: {
-      'data-testid': dataTestId,
-    },
+    position: 'bottom-left',
+    title: title || 'Information',
+    message,
+    autoClose: duration,
+    dataTestId,
   });
 
-  showWarning = (message, title = null, duration = 4.5, dataTestId = 'notification_warning') => notification.warning({
+  showWarning = (
+    message,
+    title = null,
+    duration = 10000,
+    dataTestId = 'notification_warning',
+  ) => toast.warning(this.getToastElement, {
     ...this.commonConfig,
-    message: title || 'Attention !',
-    description: message,
-    duration,
-    props: {
-      'data-testid': dataTestId,
-    },
+    position: 'bottom-left',
+    title: title || 'Attention !',
+    message,
+    autoClose: duration,
+    dataTestId,
   });
 
-  showSuccess = (message, title = null, duration = 4.5, dataTestId = 'notification_success') => notification.success({
+  showSuccess = (
+    message,
+    title = null,
+    duration = 10000,
+    dataTestId = 'notification_success',
+  ) => toast.success(this.getToastElement, {
     ...this.commonConfig,
-    message: title || 'Opération réalisée avec succès',
-    description: message,
-    duration,
-    props: {
-      'data-testid': dataTestId,
-    },
+    title,
+    message,
+    autoClose: duration,
+    dataTestId,
   });
 
-  showError = (message, title = null, duration = 4.5, dataTestId = 'notification_error') => notification.error({
+  showError = (
+    message,
+    title = null,
+    duration = 10000,
+    dataTestId = 'notification_error',
+  ) => toast.error(this.getToastElement, {
     ...this.commonConfig,
-    message: title || (message?.name && message.name !== 'Error') || 'Oups ! Une erreur est survenue',
-    description: message?.message || message,
-    duration,
-    props: {
-      'data-testid': dataTestId,
-    },
+    title:
+        title
+        || (message.name !== 'Error' && message?.name)
+        || 'Oups ! Une erreur est survenue',
+    message: message?.message || message,
+    autoClose: duration,
+    dataTestId,
   });
 
   render() {
     const { children } = this.props;
 
     return (
-      <MessagesContext.Provider
-        value={this.messageContextValue}
-      >
-        { children }
+      <MessagesContext.Provider value={this.messageContextValue}>
+        {children}
+        <ToastContainer />
       </MessagesContext.Provider>
     );
   }
@@ -99,7 +125,6 @@ MessagesProvider.propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-MessagesProvider.defaultProps = {
-};
+MessagesProvider.defaultProps = {};
 
-export default (MessagesProvider);
+export default MessagesProvider;

@@ -1786,10 +1786,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@o-clock-dev/mooncake@^2.2.0":
-  version "2.2.0"
-  resolved "https://npm.pkg.github.com/download/@o-clock-dev/mooncake/2.2.0/d7be5ee920c8258dafc5c49ffa9bd0873df52984#d7be5ee920c8258dafc5c49ffa9bd0873df52984"
-  integrity sha512-pKg9oVZIzt3JJVVfWx3rqeAL2pjplXj+4bGyWPK/IiHJUUXBHCTNVGY9isdUvMv1MWVrxUa/VRypQnyqq8kAyA==
+"@o-clock-dev/mooncake@^2.6.0":
+  version "2.6.0"
+  resolved "https://npm.pkg.github.com/download/@o-clock-dev/mooncake/2.6.0/71c277e547a1e4470396642695019fe20b1e4db1#71c277e547a1e4470396642695019fe20b1e4db1"
+  integrity sha512-KXTqkQuqMtS0vvLvH2bqb4fQRIY7WGl8OUD+Thr2su+ThLj4mhX+cKihZP6PBrr12IDfYQta5XsZBI4Vd7iUPA==
   dependencies:
     "@ant-design/icons" "^4.8.0"
     "@rollup/plugin-alias" "^4.0.2"
@@ -1808,6 +1808,7 @@
     postcss "^8.4.19"
     rc-animate "^3.1.1"
     rc-menu "^9.8.0"
+    react-toastify "^9.1.1"
     rollup "^3.4.0"
     rollup-plugin-dts "^5.0.0"
     rollup-plugin-peer-deps-external "^2.2.4"

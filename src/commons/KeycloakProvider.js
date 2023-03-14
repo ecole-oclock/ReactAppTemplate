@@ -5,6 +5,7 @@ import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { ReactKeycloakProvider, useKeycloak } from '@react-keycloak/web';
 import { useRecoilState } from 'recoil';
 import jwtDecode from 'jwt-decode';
+import PropTypes from 'prop-types';
 
 /**
  * Local Import
@@ -96,33 +97,38 @@ function KeycloakProvider({ keycloakInstance, children, showError }) {
     }
   }, [identity]);
 
-  const programRefreshToken = useCallback((tokens) => {
-    if (tokens.token) {
-      const decoded = jwtDecode(tokens.token);
-      const delay = decoded.exp * 1000 - new Date().getTime() - 10000;
-      setTimeout(() => {
-        keycloakInstance
-          .updateToken(60)
-          .then((refreshed) => {
-            if (refreshed) {
-              const newTokens = {
-                token: keycloakInstance.token,
-                refreshToken: keycloakInstance.refreshToken,
-                idToken: keycloakInstance.idToken,
-              };
-              programRefreshToken(newTokens);
-            }
-          })
-          .catch(() => {
-            showError('Une erreur est survenue durant le maintien de la session, vous allez être redirigé vers la page de connexion');
-            localStorage.removeItem('kcTokens');
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
-          });
-      }, delay);
-    }
-  }, [keycloakInstance]);
+  const programRefreshToken = useCallback(
+    (tokens) => {
+      if (tokens.token) {
+        const decoded = jwtDecode(tokens.token);
+        const delay = decoded.exp * 1000 - new Date().getTime() - 10000;
+        setTimeout(() => {
+          keycloakInstance
+            .updateToken(60)
+            .then((refreshed) => {
+              if (refreshed) {
+                const newTokens = {
+                  token: keycloakInstance.token,
+                  refreshToken: keycloakInstance.refreshToken,
+                  idToken: keycloakInstance.idToken,
+                };
+                programRefreshToken(newTokens);
+              }
+            })
+            .catch(() => {
+              showError(
+                'Une erreur est survenue durant le maintien de la session, vous allez être redirigé vers la page de connexion',
+              );
+              localStorage.removeItem('kcTokens');
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
+            });
+        }, delay);
+      }
+    },
+    [keycloakInstance],
+  );
 
   const keycloakTokens = useMemo(() => {
     const tokens = JSON.parse(localStorage.getItem('kcTokens') || '{}');
@@ -209,5 +215,19 @@ function KeycloakProvider({ keycloakInstance, children, showError }) {
     </ReactKeycloakProvider>
   );
 }
+
+KeycloakProvider.propTypes = {
+  keycloakInstance: PropTypes.shape({
+    refreshToken: PropTypes.string,
+    authenticated: PropTypes.bool,
+    updateToken: PropTypes.func.isRequired,
+    token: PropTypes.string,
+    idToken: PropTypes.string,
+    login: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+  }).isRequired,
+  children: PropTypes.node.isRequired,
+  showError: PropTypes.func,
+};
 
 export default withMessages(KeycloakProvider);

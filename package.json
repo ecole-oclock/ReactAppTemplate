@@ -81,7 +81,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
-    "@o-clock-dev/mooncake": "^2.2.0",
+    "@o-clock-dev/mooncake": "^2.6.0",
     "@react-keycloak/web": "^3.4.0",
     "@sentry/react": "^7.37.2",
     "@sentry/tracing": "^7.37.2",

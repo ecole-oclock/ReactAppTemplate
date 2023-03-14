@@ -8,9 +8,11 @@ export default selector({
   get: ({ get }) => {
     try {
       const jwToken = get(identityAtom);
-      return jwtDecode(jwToken);
+      const profile = jwtDecode(jwToken);
+      ApiCaller.setToken(jwToken);
+      return profile;
     }
-    catch (error) {
+    catch (event) {
       return {};
     }
   },
