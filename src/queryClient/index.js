@@ -1,9 +1,13 @@
 import { QueryClient } from '@tanstack/react-query';
-// Create a client
+
 export default new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: Infinity,
+      staleTime: 1000 * 30,
+      networkMode: 'offlineFirst',
+    },
+    mutations: {
+      networkMode: 'offlineFirst',
     },
   },
 });
